@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon.png')}}">
+
+    <!-- For applying css -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='reset.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
+
+    <!-- For applying javascript -->
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
+
+    <meta name="author" content="F Mio">
+    <!-- <meta name="keyword" content="loss system,iot"> -->
+    <meta charset=UTF-8>
+    <meta name="description" content="ロス登録システム">
+    <title>ロス登録システム</title>
+</head>
+<body>
+    <h1 class="title">ABC加工　D工場ロス計上システム</h1>
+    <div class="main-area">
+
+        <h2 class="section-title">部門情報</h2>
+        <div class="select-department-area">
+            <h3>ライン</h3>
+            <select>
+                <option value="0">--選択してください--</option>
+                {% for key, value in manufucturing_teams %}
+                    <option value="{{key}}">{{value}}</option>
+                {% endfor %}
+                <!-- <option value="2">Bライン</option>
+                <option value="3">Cライン</option>
+                <option value="4">Dライン</option> -->
+            </select>
+        </div>
+
+        <h2 class="w-title">ロス情報</h2>
+        <div class="select-department-area">
+            <h3>ライン</h3>
+            <select>
+                <option value="0">--選択してください--</option>
+                {% for key, value in waste_names %}
+                    <option value="{{key}}">{{value}}</option>
+                {% endfor %}
+                <!-- <option value="1">貝</option>
+                <option value="2">包装紙</option>
+                <option value="3">魚</option>
+                <option value="4">ステーキ</option> -->
+            </select>
+        </div>
+
+        <h2 class="h2-title">重量情報</h2>
+        <div class="display-weight-area">
+            <p class="display-weight-box"><span class="weight-display">21.2</span>　kg</p>
+        </div>
+
+        <button class="submit-btn">データ登録</button>
+    </div>
+    <script>
+        const apiBaseUrl = "http://127.0.0.1:5555/api";
+        let testRes;
+    </script>
+</body>
+
+</html>

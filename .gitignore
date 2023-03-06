@@ -1,0 +1,6 @@
+__pycache__/*
+*/migrations/*
+*/__init__.py
+*/__pycache__/
+*.pyc
+*/*.csv
