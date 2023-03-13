@@ -1,5 +1,55 @@
 
 h1.title {
-    color: aqua;
-    background-color: rgba(200, 200, 100, 0.3);
+    height: 50px;
+    background-color: rgba(100, 100, 100, 0.3);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/*
+  ブロック
+*/
+
+div.main-area{
+    display: flex;
+    flex-direction: row;
+}
+
+div.input-area{
+    height: calc(100vh - 50px -10px);
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.tmp-table-area{
+    background-color: rgba(20, 155, 100, 0.3);
+    width: 60%;
+    height: calc(100vh - 50px - 10px - 20px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+
+/*
+  入力エリア
+*/
+
+
+/*
+  入力テーブル
+*/
+table.tmp-record-table{
+    width: 90%;
+    padding-left: 5%;
+    border-collapse:  collapse;
+}
+
+table.tmp-record-table tbody{
+    height: calc(100vh - 50px - 10px - 40px);
+}
+
+table.tmp-record-table th,table.tmp-record-table td{
+    border: solid 1px black;
 }

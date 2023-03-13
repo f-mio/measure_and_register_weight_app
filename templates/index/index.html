@@ -23,45 +23,55 @@
     <h1 class="title">ABC加工　D工場ロス計上システム</h1>
     <div class="main-area">
 
-        <h2 class="section-title">部門情報</h2>
-        <div class="select-department-area">
-            <h3>ライン</h3>
-            <select>
-                <option value="0">--選択してください--</option>
-                {% for key, value in manufucturing_teams %}
-                    <option value="{{key}}">{{value}}</option>
-                {% endfor %}
-                <!-- <option value="2">Bライン</option>
-                <option value="3">Cライン</option>
-                <option value="4">Dライン</option> -->
-            </select>
+        <div class="input-area">
+            <h2 class="section-title">部門情報</h2>
+            <div class="select-department-area">
+                <select class="select-team-form" id="select_team_form">
+                    <option value="0">--選択してください--</option>
+                    {% for value, form_text in manufucturing_teams %}
+                        <option value="{{value}}">{{form_text}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <h2 class="w-title">ロス情報</h2>
+            <div class="select-department-area">
+                <select class="select-waste-form" id="select_waste_form">
+                    <option value="0">--選択してください--</option>
+                    {% for value, form_text in waste_names %}
+                        <option value="{{value}}">{{form_text}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <h2 class="h2-title">重量情報</h2>
+            <div class="display-weight-area">
+                <p class="display-weight-box"><span class="weight-display" id="weight_value">21.2</span>　kg</p>
+            </div>
+            <button class="submit-tmp-table-btn" id="submit_tmp_table_btn">一時保存テーブルへ格納</button>
         </div>
 
-        <h2 class="w-title">ロス情報</h2>
-        <div class="select-department-area">
-            <h3>ライン</h3>
-            <select>
-                <option value="0">--選択してください--</option>
-                {% for key, value in waste_names %}
-                    <option value="{{key}}">{{value}}</option>
-                {% endfor %}
-                <!-- <option value="1">貝</option>
-                <option value="2">包装紙</option>
-                <option value="3">魚</option>
-                <option value="4">ステーキ</option> -->
-            </select>
+        <div class="tmp-table-area">
+            <button class="submit-db-btn" id="submit_db_btn">データ登録</button>
+            <table class="tmp-record-table">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
         </div>
 
-        <h2 class="h2-title">重量情報</h2>
-        <div class="display-weight-area">
-            <p class="display-weight-box"><span class="weight-display">21.2</span>　kg</p>
-        </div>
-
-        <button class="submit-btn">データ登録</button>
     </div>
     <script>
         const apiBaseUrl = "http://127.0.0.1:5555/api";
         let testRes;
+
+        const submitTmpTableBtn = document.getElementById('submit_tmp_table_btn'),
+            submitDbBtn = document.getElementById('submit_db_btn');
+        window.onload = () => {
+            setInterval(getWeight, 500);
+            submitTmpTableBtn.addEventListener('click', submitTmpTableBtnClick)
+            submitDbBtn.addEventListener('click', submitDbBtnClick)
+        }
+
     </script>
 </body>
 
