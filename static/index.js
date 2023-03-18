@@ -29,7 +29,7 @@ function submitTmpTableBtnClick(){
       - (TODO) XXXX
     */
 
-    const colClassNameList = ["record-team-id", "record-team-name", "record-waste-id", "record-waste-name", "record-waste-weight"];
+    const colClassNameList = ["remove-btn-area","record-team-id", "record-team-name", "record-waste-id", "record-waste-name", "record-waste-weight"];
 
     const theadElement = document.querySelector('thead'),
         checkThElement = theadElement.querySelector('th');
@@ -53,28 +53,26 @@ function submitTmpTableBtnClick(){
         wasteId = selectWasteForm.value;
     let wasteName;
 
-    wasteOptions = selectWasteForm.querySelectorAll('option')
+    wasteOptions = selectWasteForm.querySelectorAll('option');
     wasteOptions.forEach( option => {
         if (option.value == wasteId) {
-            wasteName = option.innerText
-        }
+            wasteName = option.innerText;
+        };
     })
 
     // weightの取り出し
     const weightValue = document.getElementById("weight_value").innerText;
 
-    const newRecord = [teamId, teamName, wasteId, wasteName, weightValue]
+    const newRecord = [null, teamId, teamName, wasteId, wasteName, weightValue]
 
     if (teamId!="0" && wasteId !="0") {
         // header作成が必要か確認。　必要な場合作成する。
         if (checkThElement == null) {
-            const headerRecord = ["班id", "班名", "ゴミid", "ゴミ名", "廃棄量"];
+            const headerRecord = ["削除","班id", "班名", "ゴミid", "ゴミ名", "廃棄量"];
             addRecordToTmpTable(theadElement, "th", colClassNameList, headerRecord);
-        }
-
+        };
         addRecordToTmpTable(tbodyElement, "td", colClassNameList, newRecord);
-    }
-
+    };
 }
 
 
@@ -112,6 +110,16 @@ function addRecordToTmpTable(destinationElement, colType, colClassNameList, reco
         const colElement = document.createElement(`${colType}`);
         colElement.setAttribute('class', `${colClassNameList[i]}`);
         colElement.innerText = colValue;
+
+        // 先頭に削除用ボタンを挿入
+        if (i==0 && (colType == "td")) {
+            const removeBtnImg = document.createElement("img");
+            removeBtnImg.setAttribute('class', 'remove-btn-img');
+            removeBtnImg.setAttribute('src', removeBtnUrl)
+            removeBtnImg.setAttribute('alt', '削除ボタン')
+            colElement.appendChild(removeBtnImg);
+        };
+
         trElement.appendChild(colElement);
         i = i + 1
     });

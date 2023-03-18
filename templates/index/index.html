@@ -6,12 +6,12 @@
     <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon.png')}}">
 
     <!-- For applying css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='reset.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
 
     <!-- For applying javascript -->
     <script src="{{url_for('static', filename='index.js')}}"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 
     <meta name="author" content="F Mio">
     <!-- <meta name="keyword" content="loss system,iot"> -->
@@ -24,7 +24,7 @@
     <div class="main-area">
 
         <div class="input-area">
-            <h2 class="section-title">部門情報</h2>
+            <h2 class="department-info-title">部門情報</h2>
             <div class="select-department-area">
                 <select class="select-team-form" id="select_team_form">
                     <option value="0">--選択してください--</option>
@@ -34,8 +34,8 @@
                 </select>
             </div>
 
-            <h2 class="w-title">ロス情報</h2>
-            <div class="select-department-area">
+            <h2 class="waste-info-title">ロス情報</h2>
+            <div class="select-waste-name-area">
                 <select class="select-waste-form" id="select_waste_form">
                     <option value="0">--選択してください--</option>
                     {% for value, form_text in waste_names %}
@@ -48,11 +48,13 @@
             <div class="display-weight-area">
                 <p class="display-weight-box"><span class="weight-display" id="weight_value">21.2</span>　kg</p>
             </div>
-            <button class="submit-tmp-table-btn" id="submit_tmp_table_btn">一時保存テーブルへ格納</button>
+            <div class="submit-tmp-table-area">
+                    <button class="btn btn-primary submit-tmp-table-btn" id="submit_tmp_table_btn">一時保存テーブルへ格納</button>
+            </div>
         </div>
 
         <div class="tmp-table-area">
-            <button class="submit-db-btn" id="submit_db_btn">データ登録</button>
+            <button class="btn btn-success submit-db-btn" id="submit_db_btn">データ登録</button>
             <table class="tmp-record-table">
                 <thead></thead>
                 <tbody></tbody>
@@ -61,7 +63,8 @@
 
     </div>
     <script>
-        const apiBaseUrl = "http://127.0.0.1:5555/api";
+        const apiBaseUrl = "http://127.0.0.1:5555/api",
+            removeBtnUrl = "{{url_for('static',filename='removeBtn.png')}}";
         let testRes;
 
         const submitTmpTableBtn = document.getElementById('submit_tmp_table_btn'),

@@ -2,8 +2,11 @@
 h1.title {
     height: 50px;
     background-color: rgba(100, 100, 100, 0.3);
+    size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
+    text-align: center;
+    text-shadow: black;
 }
 
 /*
@@ -16,18 +19,26 @@ div.main-area{
 }
 
 div.input-area{
-    height: calc(100vh - 50px -10px);
-    width: 40%;
+    height: calc(100vh - 50px - 40px);
+    width: calc(40% - 30px);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 10px;
+    padding: 10px 15px;
+    border: solid blue 1px;
+    border-radius: 15px;
 }
 
 div.tmp-table-area{
-    background-color: rgba(20, 155, 100, 0.3);
+    height: calc(100vh - 50px - 40px);
     width: 60%;
-    height: calc(100vh - 50px - 10px - 20px);
     display: flex;
     flex-direction: column;
+    margin: 10px 10px;
+    border: solid green 1px;
+    border-radius: 15px;
     overflow-y: scroll;
 }
 
@@ -36,20 +47,117 @@ div.tmp-table-area{
   入力エリア
 */
 
+div.input-area h2{
+    color: blue;
+    text-shadow: skyblue 2px 2px;
+    text-decoration: underline blue;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+div.input-area div.select-department-area,
+div.input-area div.select-waste-name-area{
+    width: 100%;
+}
+
+div.input-area div.select-department-area select,
+div.input-area div.select-waste-name-area select{
+    width: 90%;
+    font-size: 24px;
+    margin-left: 5%;
+}
+
+div.input-area div.display-weight-area{
+    width: 100%;
+}
+
+div.input-area div.display-weight-area p{
+    width: 75%;
+    font-size: 30px;
+    border: solid black 1px;
+    border-radius: 3px;
+    text-align: center;
+    margin-left: 12.5%;
+}
+
+div.submit-tmp-table-area{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+button.submit-tmp-table-btn{
+    width: 90%;
+    height: 50px;
+    font-size: 20px;
+}
+
 
 /*
-  入力テーブル
+  データ保管テーブル
 */
+
+button.submit-db-btn{
+    width: 90%;
+    margin: 20px 5%;
+    font-size: 20px;
+}
+
 table.tmp-record-table{
     width: 90%;
-    padding-left: 5%;
-    border-collapse:  collapse;
+    margin-left: 5%;
+    background-color: rgba(20, 155, 100, 0.3);
+    border-collapse: collapse;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
+table.tmp-record-table thead,
 table.tmp-record-table tbody{
-    height: calc(100vh - 50px - 10px - 40px);
+    width: 100%;
 }
 
-table.tmp-record-table th,table.tmp-record-table td{
+table.tmp-record-table tbody td{
+    height: auto;
+}
+
+table.tmp-record-table th,
+table.tmp-record-table td{
     border: solid 1px black;
+}
+
+table.tmp-record-table th.remove-btn-area,
+table.tmp-record-table th.record-team-id,
+table.tmp-record-table th.record-waste-id{
+    width: 10%;
+};
+
+table.tmp-record-table th.record-team-name,
+table.tmp-record-table th.record-waste-name,
+table.tmp-record-table th.record-waste-weight{
+    width: 25%;
+}
+
+table.tmp-record-table th.record-waste-weight{
+    width: 20%;
+}
+
+table.tmp-record-table td.remove-btn-area{}
+
+table.tmp-record-table td.remove-btn-area:hover{
+    background-color: rgba(255, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+/* table.tmp-record-table tbody td.remove-btn-area  */
+div.removeBtnDiv{
+    width: 100%;
+}
+
+table.tmp-record-table tbody td.remove-btn-area img{
+    height: 25px;
+    display: block;
+    margin: auto;
 }
