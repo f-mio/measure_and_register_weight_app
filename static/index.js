@@ -73,7 +73,15 @@ function submitTmpTableBtnClick(){
         };
         addRecordToTmpTable(tbodyElement, "td", colClassNameList, newRecord);
     };
-}
+
+    // 削除ボタンのループ処理
+    removeTdElements = document.querySelectorAll('td.remove-btn-area');
+    removeTdElements.forEach( removeTdElement => {
+        removeTdElement.addEventListener('click', ()=>{
+            removeRecordFromTmpTable(removeTdElement);
+        });
+    });
+};
 
 
 function addRecordToTmpTable(destinationElement, colType, colClassNameList, record) {
@@ -123,8 +131,32 @@ function addRecordToTmpTable(destinationElement, colType, colClassNameList, reco
         trElement.appendChild(colElement);
         i = i + 1
     });
+
+    if (colType == "td") {
+        const wasteWeightValue =  parseFloat(record[5]),
+            wasteId = parseInt(record[3]);
+        if ((lastRegisterData * 0.9 < wasteWeightValue) && (wasteWeightValue < lastRegisterData * 1.1) && lastWasteId == wasteId) {
+            trElement.setAttribute('class', 'may-be-duplicate');
+        };
+        lastRegisterData = Math.round(wasteWeightValue, 0);
+        lastWasteId = wasteId;
+        console.log(lastRegisterData)
+    }
     destinationElement.appendChild(trElement);
 };
+
+function removeRecordFromTmpTable(removeTdElement) {
+    /*
+    description
+      ゴミ情報の一時格納テーブルの中で削除ボタンを押した際に対象レコードを削除する。
+    input
+      recordTdElement : 削除対象レコードのtd要素
+    output
+      None
+    */
+    parentElement = removeTdElement.parentElement;
+    parentElement.remove();
+}
 
 
 // TODO
@@ -141,7 +173,6 @@ function submitDbBtnClick() {
     clearAllRecord()
 }
 
-
 function clearAllRecord() {
     /*
     description
@@ -157,3 +188,5 @@ function clearAllRecord() {
         trElement.remove();
     } )
 }
+
+

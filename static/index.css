@@ -1,12 +1,12 @@
 
 h1.title {
     height: 50px;
-    background-color: rgba(100, 100, 100, 0.3);
-    size: 24px;
+    /* background-color: rgba(100, 100, 100, 0.3); */
+    font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
     text-align: center;
-    text-shadow: black;
+    text-shadow: rgb(200,200,200) 5px 4px;
 }
 
 /*
@@ -29,6 +29,7 @@ div.input-area{
     padding: 10px 15px;
     border: solid blue 1px;
     border-radius: 15px;
+    background-color: rgba(20, 50, 255, 0.1);
 }
 
 div.tmp-table-area{
@@ -40,6 +41,7 @@ div.tmp-table-area{
     border: solid green 1px;
     border-radius: 15px;
     overflow-y: scroll;
+    background-color: rgba(20, 255, 100, 0.1);
 }
 
 
@@ -63,7 +65,7 @@ div.input-area div.select-waste-name-area{
 div.input-area div.select-department-area select,
 div.input-area div.select-waste-name-area select{
     width: 90%;
-    font-size: 24px;
+    font-size: 30px;
     margin-left: 5%;
 }
 
@@ -74,6 +76,7 @@ div.input-area div.display-weight-area{
 div.input-area div.display-weight-area p{
     width: 75%;
     font-size: 30px;
+    background-color: whitesmoke;
     border: solid black 1px;
     border-radius: 3px;
     text-align: center;
@@ -93,7 +96,6 @@ button.submit-tmp-table-btn{
     height: 50px;
     font-size: 20px;
 }
-
 
 /*
   データ保管テーブル
@@ -128,19 +130,19 @@ table.tmp-record-table td{
     border: solid 1px black;
 }
 
-table.tmp-record-table th.remove-btn-area,
-table.tmp-record-table th.record-team-id,
-table.tmp-record-table th.record-waste-id{
+table.tmp-record-table .remove-btn-area,
+table.tmp-record-table .record-team-id,
+table.tmp-record-table .record-waste-id{
     width: 10%;
 };
 
-table.tmp-record-table th.record-team-name,
-table.tmp-record-table th.record-waste-name,
-table.tmp-record-table th.record-waste-weight{
+table.tmp-record-table .record-team-name,
+table.tmp-record-table .record-waste-name,
+table.tmp-record-table .record-waste-weight{
     width: 25%;
 }
 
-table.tmp-record-table th.record-waste-weight{
+table.tmp-record-table .record-waste-weight{
     width: 20%;
 }
 
@@ -160,4 +162,8 @@ table.tmp-record-table tbody td.remove-btn-area img{
     height: 25px;
     display: block;
     margin: auto;
+}
+
+table.tmp-record-table tbody tr.may-be-duplicate {
+    background-color: yellow;
 }
