@@ -167,3 +167,25 @@ table.tmp-record-table tbody td.remove-btn-area img{
 table.tmp-record-table tbody tr.may-be-duplicate {
     background-color: yellow;
 }
+
+
+/* 
+  スマホ対応
+*/
+@media screen and (max-width: 1000px) {
+    h1.title {
+        height: auto;
+        font-size: 28px;
+    }
+
+    div.main-area{
+        flex-direction: column;
+    }
+
+    div.input-area,
+    div.tmp-table-area{
+        height: auto;
+        width: 90%;
+        margin: 20px 5%;
+    }
+}
