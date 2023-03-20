@@ -64,13 +64,14 @@
     </div>
     <script>
         const apiBaseUrl = "http://127.0.0.1:5555/api",
+        // const apiBaseUrl = "http://192.168.11.5:5555/api",
             removeBtnUrl = "{{url_for('static',filename='removeBtn.png')}}";
         let testRes, lastWasteId=0, lastRegisterData=0;
 
         const submitTmpTableBtn = document.getElementById('submit_tmp_table_btn'),
             submitDbBtn = document.getElementById('submit_db_btn');
         window.onload = () => {
-            setInterval(getWeight, 500);
+            setInterval(getWeight, 1000);
             submitTmpTableBtn.addEventListener('click', submitTmpTableBtnClick)
             submitDbBtn.addEventListener('click', submitDbBtnClick)
         }

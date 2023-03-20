@@ -1,5 +1,5 @@
 async function getWeight() {
-    const getWeightEndpoint = `${apiBaseUrl}/weight`,
+    const getWeightEndpoint = `${apiBaseUrl}/weight/`,
         requestHeaders = new Headers();
 
     const weightApiRes = await fetch(getWeightEndpoint, {
@@ -160,7 +160,7 @@ function removeRecordFromTmpTable(removeTdElement) {
 
 
 // TODO
-function submitDbBtnClick() {
+async function submitDbBtnClick() {
     /*
     description
       ゴミ情報の一時格納テーブルの内容をDBに登録する。
@@ -170,7 +170,39 @@ function submitDbBtnClick() {
       None
     */
 
-    clearAllRecord()
+    const tbodyElement = document.querySelector('tbody'),
+        tbodyTrElements = tbodyElement.querySelectorAll('tr');
+
+    for (const trElement of tbodyTrElements) {
+        const teamId = trElement.querySelector('td.record-team-id').innerText,
+            wasteId = trElement.querySelector('td.record-waste-id').innerText,
+            wasteWeightValue = trElement.querySelector('td.record-waste-weight').innerText,
+            wasteWeightUnit = 'kg';
+
+        await sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue, wasteWeightUnit);
+
+    }
+}
+
+
+async function sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue, wasteWeightUnit) {
+
+    const registerWeightEndpoint = `${apiBaseUrl}/register_waste_weight/`;
+
+    const sendData = {
+        'teamId': teamId,
+        'wasteId': wasteId,
+        'wasteWeightValue': wasteWeightValue,
+        'wasteWeightUnit': wasteWeightUnit
+    }
+
+    await fetch(registerWeightEndpoint, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(sendData),
+    });
+
+    trElement.remove()
 }
 
 function clearAllRecord() {

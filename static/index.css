@@ -1,7 +1,6 @@
 
 h1.title {
     height: 50px;
-    /* background-color: rgba(100, 100, 100, 0.3); */
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -112,7 +111,7 @@ table.tmp-record-table{
     margin-left: 5%;
     background-color: rgba(20, 155, 100, 0.3);
     border-collapse: collapse;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
@@ -175,7 +174,7 @@ table.tmp-record-table tbody tr.may-be-duplicate {
 @media screen and (max-width: 1000px) {
     h1.title {
         height: auto;
-        font-size: 28px;
+        font-size: 36px;
     }
 
     div.main-area{
