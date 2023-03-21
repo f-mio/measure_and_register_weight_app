@@ -2,7 +2,7 @@
 import os
 import datetime as dt
 
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, request
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, Table, MetaData
@@ -63,23 +63,32 @@ def weight_api():
 @app.route("/api/register_waste_weight/", methods=['POST'])
 def register_waste_weight_to_database():
 
-    team_id = 11
-    waste_id = 22
-    waste_weight = 33
-    waste_weight_unit = 'kg'
+    request_data = request.json
+
+    team_id = request_data['teamId']
+    waste_id = request_data['wasteId']
+    waste_weight = request_data['wasteWeightValue']
+    waste_weight_unit = request_data['wasteWeightUnit']
+
+
+    # team_id = 11
+    # waste_id = 22
+    # waste_weight = 33
+    # waste_weight_unit = 'kg'
+
 
     session = Session(waste_db_engine)
     history_model = WasteDbBase.classes.waste_history
 
-    just_now = dt.datetime.now()
+    current_time = dt.datetime.now()
 
     session.add(history_model(
         team_id=team_id,
         waste_id=waste_id,
         waste_weight=waste_weight,
         waste_weight_unit = waste_weight_unit,
-        last_update_timestamp = just_now,
-        create_timestamp = just_now
+        last_update_timestamp = current_time,
+        create_timestamp = current_time
     ))
     session.commit()
 
