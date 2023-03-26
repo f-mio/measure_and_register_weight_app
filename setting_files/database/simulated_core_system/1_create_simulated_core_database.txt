@@ -1,0 +1,3 @@
+シェルで下記コマンドを入力
+
+$ createdb --owner=(DB管理者名) --encoding=UTF-8 --locale=ja_JP.UTF-8 --template=template0 iot_prj_core_database_model

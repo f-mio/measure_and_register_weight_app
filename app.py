@@ -9,14 +9,8 @@ from sqlalchemy import create_engine, Table, MetaData
 import random
 
 
-iot_waste_db_name = os.environ['iot_waste_db_name']
-iot_waste_db_host = os.environ['iot_waste_db_host']
-iot_waste_db_port = os.environ['iot_waste_db_port']
-iot_waste_db_user_name = os.environ['iot_waste_db_user_name']
-iot_waste_db_user_pass = os.environ['iot_waste_db_user_pass']
-
-waste_db_connection_info = f"postgresql://{iot_waste_db_user_name}:{iot_waste_db_user_pass}"
-waste_db_connection_info += f"@{iot_waste_db_host}:{iot_waste_db_port}/{iot_waste_db_name}"
+waste_db_connection_info = os.environ['iot_waste_db_connection_url']
+core_db_connection_info = os.environ['iot_core_db_connection_url']
 
 
 app = Flask(__name__)
