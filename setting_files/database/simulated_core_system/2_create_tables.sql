@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS branch
 -- リレーション
 ALTER TABLE branch
 ADD CONSTRAINT branch_fk_from_plant
-  FOREIGN KEY ( id ) REFERENCES plant ( id )
+  FOREIGN KEY ( plant_id ) REFERENCES plant ( id )
 ;
 -- インデックス
 CREATE INDEX IF NOT EXISTS
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS department
 -- リレーション
 ALTER TABLE department
 ADD CONSTRAINT department_fk_from_branch
-  FOREIGN KEY ( id ) REFERENCES branch ( id )
+  FOREIGN KEY ( branch_id ) REFERENCES branch ( id )
 ;
 -- インデックス
 CREATE INDEX IF NOT EXISTS
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS processing_line
 -- リレーション
 ALTER TABLE public.processing_line
 ADD CONSTRAINT processing_line_fk_from_department
-  FOREIGN KEY ( id ) REFERENCES branch ( id )
+  FOREIGN KEY ( department_id ) REFERENCES department ( id )
 ;
 -- インデックス
 CREATE INDEX IF NOT EXISTS
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS public.team
 -- リレーション
 ALTER TABLE public.team
 ADD CONSTRAINT team_fk_from_processing_line
-  FOREIGN KEY ( id ) REFERENCES processing_line ( id )
+  FOREIGN KEY ( line_id ) REFERENCES processing_line ( id )
 ;
 -- インデックス
 CREATE INDEX IF NOT EXISTS

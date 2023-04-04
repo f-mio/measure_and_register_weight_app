@@ -1,0 +1,3 @@
+id,plant_name,is_active,last_update_timestamp,last_update_user_id,create_timestamp
+1,本社,TRUE,"2023-04-02 23:59:59","2020001","2023-04-02 23:59:59"
+2,大阪支社,TRUE,"2023-04-02 23:59:59","2020001","2023-04-02 23:59:59"

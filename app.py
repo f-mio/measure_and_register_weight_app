@@ -21,24 +21,28 @@ WasteDbBase = automap_base()
 waste_db_engine = create_engine(waste_db_connection_info)
 WasteDbBase.prepare(waste_db_engine, reflect=True)
 
+CoreDbBase = automap_base()
+core_db_engine = create_engine(core_db_connection_info)
+CoreDbBase.prepare(core_db_engine, reflect=True)
+
 
 
 @app.route("/")
 def index():
 
-    session = Session(waste_db_engine)
+    waste_session = Session(waste_db_engine)
     team_model = WasteDbBase.classes.team
     waste_model = WasteDbBase.classes.manufucturing_waste_name
 
-    teams = session.query(team_model).order_by(team_model.id.asc())
-    waste_names = session.query(waste_model).order_by(waste_model.id.asc())
+    teams = waste_session.query(team_model).order_by(team_model.id.asc())
+    waste_names = waste_session.query(waste_model).order_by(waste_model.id.asc())
 
     manufucturing_teams = [
         (team.id, str(team.team_name)) for team in teams]
     waste_names = [
         (waste.id, waste.waste_name) for waste in waste_names]
 
-    session.close()
+    waste_session.close()
 
     return render_template(
         'index/index.html',

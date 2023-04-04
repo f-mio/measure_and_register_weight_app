@@ -23,67 +23,12 @@ CREATE TABLE IF NOT EXISTS waste_history
   );
 
 
--- 事業所
-CREATE TABLE IF NOT EXISTS plant
-  (
-    id SERIAL NOT NULL PRIMARY KEY,
-    plant_name VARCHAR(20),
-    last_update_timestamp TIMESTAMP,
-    last_update_user_id INTEGER,
-    create_timestamp TIMESTAMP
-  )
-;
-
-CREATE TABLE IF NOT EXISTS branch
-  (
-    id SERIAL NOT NULL PRIMARY KEY,
-    branch_name VARCHAR(20),
-    plant_id INTEGER,
-    last_update_timestamp TIMESTAMP,
-    last_update_user_id INTEGER,
-    create_timestamp TIMESTAMP
-  )
-;
-
-CREATE TABLE IF NOT EXISTS department
-  (
-    id SERIAL NOT NULL PRIMARY KEY,
-    department_name VARCHAR(20),
-    branch_id INTEGER,
-    last_update_timestamp TIMESTAMP,
-    last_update_user_id INTEGER,
-    create_timestamp TIMESTAMP
-  )
-;
-
-CREATE TABLE IF NOT EXISTS processing_line
-  (
-    id SERIAL NOT NULL PRIMARY KEY,
-    line_name VARCHAR(20),
-    department_id INTEGER,
-    last_update_timestamp TIMESTAMP,
-    last_update_user_id INTEGER,
-    create_timestamp TIMESTAMP
-  )
-;
-
-CREATE TABLE IF NOT EXISTS team
-  (
-    id SERIAL NOT NULL PRIMARY KEY,
-    team_name VARCHAR(20),
-    line_id INTEGER,
-    last_update_timestamp TIMESTAMP,
-    last_update_user_id INTEGER,
-    create_timestamp TIMESTAMP
-  )
-;
-
-
 -- ゴミ
-CREATE TABLE IF NOT EXISTS major_waste_classification
+CREATE TABLE IF NOT EXISTS waste_major_classification
   (
     id SERIAL NOT NULL PRIMARY KEY,
     classification_name VARCHAR(20),
+    is_active BOOLEAN,
     last_update_timestamp TIMESTAMP,
     last_update_user_id INTEGER,
     create_timestamp TIMESTAMP
@@ -91,39 +36,57 @@ CREATE TABLE IF NOT EXISTS major_waste_classification
 ;
 
 
-CREATE TABLE IF NOT EXISTS middle_waste_classification
+CREATE TABLE IF NOT EXISTS waste_middle_classification
   (
     id SERIAL NOT NULL PRIMARY KEY,
     classification_name VARCHAR(20),
-    major_waste_classification_id INTEGER,
+    major_classification_id INTEGER,
+    is_active BOOLEAN,
     last_update_timestamp TIMESTAMP,
     last_update_user_id INTEGER,
     create_timestamp TIMESTAMP
   )
 ;
+-- リレーション
+ALTER TABLE waste_middle_classification
+ADD CONSTRAINT middle_class_fk_from_major_class
+  FOREIGN KEY ( major_classification_id ) REFERENCES waste_major_classification ( id )
+;
 
 
-CREATE TABLE IF NOT EXISTS minor_waste_classification
+CREATE TABLE IF NOT EXISTS waste_minor_classification
   (
     id SERIAL NOT NULL PRIMARY KEY,
     classification_name VARCHAR(20),
-    middle_waste_classification_id INTEGER,
+    middle_classification_id INTEGER,
+    is_active BOOLEAN,
     last_update_timestamp TIMESTAMP,
     last_update_user_id INTEGER,
     create_timestamp TIMESTAMP
   )
 ;
+-- リレーション
+ALTER TABLE waste_minor_classification
+ADD CONSTRAINT minor_class_fk_from_middle_class
+  FOREIGN KEY ( middle_classification_id ) REFERENCES waste_middle_classification ( id )
+;
 
 
-CREATE TABLE IF NOT EXISTS manufucturing_waste_name
+CREATE TABLE IF NOT EXISTS waste_name
   (
     id SERIAL NOT NULL PRIMARY KEY,
     waste_name VARCHAR(20),
-    minor_waste_classification_id INTEGER,
+    minor_classification_id INTEGER,
+    is_active BOOLEAN,
     last_update_timestamp TIMESTAMP,
     last_update_user_id INTEGER,
     create_timestamp TIMESTAMP
   )
+;
+-- リレーション
+ALTER TABLE waste_name
+ADD CONSTRAINT waste_name_fk_from_minor_class
+  FOREIGN KEY ( minor_classification_id ) REFERENCES waste_minor_classification ( id )
 ;
 
 
