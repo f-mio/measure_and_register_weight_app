@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS waste_history
     department_id INTEGER,
     processing_line_id INTEGER,
     team_id INTEGER,
-    valid_asin_ratio FLOAT,
     major_waste_classification_id INTEGER,
     middle_waste_classification_id INTEGER,
     minor_waste_classification_id INTEGER,

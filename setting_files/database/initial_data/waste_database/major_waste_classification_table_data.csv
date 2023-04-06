@@ -1,0 +1,4 @@
+id,classification_name,is_active,last_update_timestamp,last_update_user_id,create_timestamp
+1,廃油,TRUE,"2023-04-02 23:59:59","2020001","2023-04-02 23:59:59"
+2,金属,TRUE,"2023-04-02 23:59:59","2020001","2023-04-02 23:59:59"
+3,可燃,TRUE,"2023-04-02 23:59:59","2020001","2023-04-02 23:59:59"

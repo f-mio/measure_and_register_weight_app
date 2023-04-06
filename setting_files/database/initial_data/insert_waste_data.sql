@@ -1,10 +1,17 @@
+truncate waste_name cascade;
+truncate waste_minor_classification cascade;
+truncate waste_middle_classification cascade;
+truncate waste_major_classification cascade;
+
 
 COPY
-  major_waste_classification
+  waste_major_classification
   (
+    id, classification_name, is_active,
+    last_update_timestamp, last_update_user_id, create_timestamp
   )
 FROM
-  '/Users/mio/Python/projects/measure_and_register_weight_app/setting_files/database/initial_data/major_waste_classification_table_data.csv'
+  '/any/path/to/major_waste_classification_table_data.csv'
 WITH (
   FORMAT 'csv',
   DELIMITER ',',
@@ -14,11 +21,13 @@ WITH (
 ;
 
 COPY
-  middle_waste_classification
+  waste_middle_classification
   (
+    id, classification_name, major_classification_id, is_active,
+    last_update_timestamp, last_update_user_id, create_timestamp
   )
 FROM
-  '/Users/mio/Python/projects/measure_and_register_weight_app/setting_files/database/initial_data/middle_waste_classification_table_data.csv'
+  '/any/path/to/middle_waste_classification_table_data.csv'
 WITH (
   FORMAT 'csv',
   DELIMITER ',',
@@ -28,11 +37,14 @@ WITH (
 ;
 
 COPY
-  minor_waste_classification
+  waste_minor_classification
   (
+    id, classification_name, middle_classification_id, is_active,
+    last_update_timestamp, last_update_user_id, create_timestamp
+
   )
 FROM
-  '/Users/mio/Python/projects/measure_and_register_weight_app/setting_files/database/initial_data/minor_waste_classification_table_data.csv'
+  '/any/path/to/minor_waste_classification_table_data.csv'
 WITH (
   FORMAT 'csv',
   DELIMITER ',',
@@ -42,11 +54,13 @@ WITH (
 ;
 
 COPY
-  manufucturing_waste_name
+  waste_name
   (
+    id, waste_name, minor_classification_id, is_active,
+    last_update_timestamp, last_update_user_id, create_timestamp
   )
 FROM
-  '/Users/mio/Python/projects/measure_and_register_weight_app/setting_files/database/initial_data/manufucturing_waste_name_table_data.csv'
+  '/any/path/to/manufucturing_waste_name_table_data.csv'
 WITH (
   FORMAT 'csv',
   DELIMITER ',',
