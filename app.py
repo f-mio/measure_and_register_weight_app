@@ -69,7 +69,7 @@ def register_waste_weight_to_database():
     team_id = request_data['teamId']
     waste_id = request_data['wasteId']
     waste_weight = request_data['wasteWeightValue']
-    waste_weight_unit = request_data['wasteWeightUnit']
+    waste_weight_unit = os.environ['WASTE_WEIGHT_UNIT']
 
     # セッション開始
     waste_session = Session(waste_db_engine)

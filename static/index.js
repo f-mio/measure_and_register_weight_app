@@ -176,24 +176,22 @@ async function submitDbBtnClick() {
     for (const trElement of tbodyTrElements) {
         const teamId = trElement.querySelector('td.record-team-id').innerText,
             wasteId = trElement.querySelector('td.record-waste-id').innerText,
-            wasteWeightValue = trElement.querySelector('td.record-waste-weight').innerText,
-            wasteWeightUnit = 'kg';
+            wasteWeightValue = trElement.querySelector('td.record-waste-weight').innerText;
 
-        await sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue, wasteWeightUnit);
+        await sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue);
 
     }
 }
 
 
-async function sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue, wasteWeightUnit) {
+async function sendApiRegisterDb(trElement, teamId, wasteId, wasteWeightValue) {
 
     const registerWeightEndpoint = `${apiBaseUrl}/register_waste_weight/`;
 
     const sendData = {
         'teamId': teamId,
         'wasteId': wasteId,
-        'wasteWeightValue': wasteWeightValue,
-        'wasteWeightUnit': wasteWeightUnit
+        'wasteWeightValue': wasteWeightValue
     }
 
     await fetch(registerWeightEndpoint, {
