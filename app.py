@@ -56,7 +56,19 @@ def index():
 @app.route("/api/weight/", methods=['GET'])
 def weight_api():
 
-    weight = random.randrange(1980, 2020) / 100
+    weight_file_path = os.environ['WASTE_WEIGHT_FILE_PATH']
+
+    if not os.path.exists(weight_file_path):
+        return make_response({"res": f"File Not Exists Error!\nPlease Check file '{os.environ['WASTE_WEIGHT_FILE_PATH']}'"})
+
+    with open(weight_file_path) as f:
+        records = f.read()
+
+    try:
+        weight = records.split('\n')[0]
+        _ = float(weight)
+    except Exception:
+        return make_response({"res": f"Cannot Convert Float Error!\nPlease Check file '{os.environ['WASTE_WEIGHT_FILE_PATH']}'"})
 
     return make_response(str(weight))
 

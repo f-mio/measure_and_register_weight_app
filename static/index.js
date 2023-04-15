@@ -12,6 +12,9 @@ async function getWeight() {
     if (weightRes > 0) {
         weightValueArea = document.querySelector('.weight-display');
         weightValueArea.innerText = weightRes;
+    } else {
+      console.log(weightRes)
+      window.alert(weightRes['res'])
     };
 }
 
