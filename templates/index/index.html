@@ -46,10 +46,10 @@
 
             <h2 class="h2-title">重量情報</h2>
             <div class="display-weight-area">
-                <p class="display-weight-box"><span class="weight-display" id="weight_value">21.2</span>　kg</p>
+                <p class="display-weight-box"><span class="weight-display" id="weight_value">21.2</span>　<span class="weight-unit" id="weight_unit">g</span></p>
             </div>
             <div class="submit-tmp-table-area">
-                    <button class="btn btn-primary submit-tmp-table-btn" id="submit_tmp_table_btn">一時保存テーブルへ格納</button>
+                <button class="btn btn-primary submit-tmp-table-btn" id="submit_tmp_table_btn">一時保存テーブルへ格納</button>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
     </div>
     <script>
         const apiBaseUrl = "http://127.0.0.1:5555/api",
-        // const apiBaseUrl = "http://192.168.11.5:5555/api",
+        // const apiBaseUrl = "http://192.168.11.100:5555/api",
             removeBtnUrl = "{{url_for('static',filename='removeBtn.png')}}";
         let testRes, lastWasteId=0, lastRegisterData=0;
 

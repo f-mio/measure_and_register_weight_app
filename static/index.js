@@ -7,14 +7,14 @@ async function getWeight() {
         headers: requestHeaders
     });
 
-    weightRes = await weightApiRes.json();
+    const weightRes = await weightApiRes.json();
 
-    if (weightRes > 0) {
-        weightValueArea = document.querySelector('.weight-display');
-        weightValueArea.innerText = weightRes;
+    if (parseFloat(weightRes) >= 0) {
+        const weightValueArea = document.querySelector('.weight-display');
+        const weightValue = Math.round(parseFloat(weightRes), 1)
+        weightValueArea.innerText = weightValue;
     } else {
-      console.log(weightRes)
-      window.alert(weightRes['res'])
+      console.log(weightRes);
     };
 }
 
